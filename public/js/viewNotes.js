@@ -23,20 +23,24 @@ const renderDataAsHtml = (data) => {
 
     for (let noteItem in data) {
         const note = data[noteItem];
+        console.log(note);
         card += createCard(note);
     }
     document.querySelector("#app").innerHTML = card;
 }
 
 const createCard = (note) => {
+    const randomColor = Math.floor(Math.random()*16777215).toString(16);
+
     return `
-        <div class="column is-on-quarter">
-            <div class="card">
+        <div class="column is-one-third" style="background-color:#${randomColor};">
+            <div class="card" style="background-color:#${randomColor};">
                 <header class="card-header">
                     <p class="card-header-title">${note.title}</p>
                 </header>
                 <div class="card-content">
                     <div class="content">${note.text}</div>
+                    <div class="content">Created by ${note.displayName} on ${note.created}</div>
                 </div>
             </div>
         </div>
